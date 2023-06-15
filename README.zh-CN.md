@@ -17,3 +17,13 @@ go build -trimpath -ldflags="-w -s"
 ```
 .\zeronet2web.exe  -dir "F:/soft/ZeroNet-win/data/" -host "https://zeronet.ipfsscan/"
 ```
+
+
+### docker 运行
+
+docker run -it  -v /mnt/f/soft/zeroNet-win/data/:/zeronet-data/ -v ./db/:/app/db/ -p 20236:20236  chenjia404/zeronet2web /zero
+net-data/ -dir "/zeronet-data/"  -host "https://zeronet.ipfsscan/"
+
+注意请把`/mnt/f/soft/zeroNet-win/data/` 修改成你的zeronet的data目录。
+
+./db/ 是博客索引数据保存目录。

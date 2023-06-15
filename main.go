@@ -163,7 +163,8 @@ var ZeroNetDataPath = ""
 var ProxyHost = ""
 
 func main() {
-	db, _ := gorm.Open(sqlite.Open("zeronet.blogs.db"), &gorm.Config{
+	os.Mkdir("./db/", os.FileMode(0777))
+	db, _ := gorm.Open(sqlite.Open("db/zeronet.blogs.db"), &gorm.Config{
 		DisableForeignKeyConstraintWhenMigrating: true,
 	})
 	db.AutoMigrate(&models.Blog{})

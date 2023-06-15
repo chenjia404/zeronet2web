@@ -20,3 +20,12 @@ Output the content of zeronet to the web, because search engines can only index 
 ```
 .\zeronet2web.exe  -dir "F:/soft/ZeroNet-win/data/" -host "https://zeronet.ipfsscan/"
 ```
+
+### docker run
+
+docker run -it  -v /mnt/f/soft/zeroNet-win/data/:/zeronet-data/ -v ./db/:/app/db/ -p 20236:20236  chenjia404/zeronet2web /zero
+net-data/ -dir "/zeronet-data/"  -host "https://zeronet.ipfsscan/"
+
+Note that please change `/mnt/f/soft/zeroNet-win/data/` to the data directory of your zeronet.
+
+./db/ is the blog index data storage directory.
