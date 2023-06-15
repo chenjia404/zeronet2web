@@ -6,7 +6,12 @@
 <h1>
 	{{ .title }}
 </h1>
+
+{{if .description }}
 <p>{{.description}}</p>
+{{else}}
+This blog has not been found, or the format is not supported，or <a href="{{.proxy_host}}{{.address}}">view mirror</a>
+{{end}}
 <p>{{.links}}</p>
 {{ range $i, $v := .Post }}
     <p>

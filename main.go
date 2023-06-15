@@ -73,14 +73,14 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 			"blogs":       blogs,
 		})
 	})
-	r.GET("/:name/", func(c *gin.Context) {
-		name := c.Param("name")
+	r.GET("/:address/", func(c *gin.Context) {
+		address := c.Param("address")
 		post_id := c.Query("post_id")
 		postId, err := strconv.Atoi(post_id)
 		if err != nil {
 			postId = 0
 		}
-		jsonFile, err := os.Open(ZeroNetDataPath + name + "/data/data.json")
+		jsonFile, err := os.Open(ZeroNetDataPath + address + "/data/data.json")
 		if err != nil {
 			fmt.Println("文件不存在，请查看该文件")
 		}
@@ -88,16 +88,16 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 		var result UserData
 		err = json.Unmarshal([]byte(byteValue), &result)
 		if err == nil {
-			result := db.Where(models.Blog{Address: name}).FirstOrCreate(&models.Blog{
+			result := db.Where(models.Blog{Address: address}).FirstOrCreate(&models.Blog{
 				Title:       result.Title,
-				Address:     name,
+				Address:     address,
 				Modified:    0,
 				Description: "Zeronet",
 			})
 			if result.RowsAffected >= 1 {
 				fmt.Printf("插入成功\n")
 			} else {
-				fmt.Printf("插入失败%s\n", name)
+				fmt.Printf("插入失败%s\n", address)
 			}
 		} else {
 			fmt.Println(err)
@@ -123,6 +123,8 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 			links := strings.Replace(linksBuf.String(), "http://127.0.0.1:43110/", ProxyHost, -1)
 
 			c.HTML(http.StatusOK, "posts/index.tmpl", gin.H{
+				"address":     address,
+				"proxy_host":  ProxyHost,
 				"title":       result.Title,
 				"description": template.HTML(description),
 				"links":       template.HTML(links),
@@ -138,6 +140,8 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 
 					body := strings.Replace(buf.String(), "http://127.0.0.1:43110/", ProxyHost, -1)
 					c.HTML(http.StatusOK, "posts/post.tmpl", gin.H{
+						"address":        address,
+						"proxy_host":     ProxyHost,
 						"title":          post.Title,
 						"date_published": time.Unix(int64(post.DatePublished), 0).String(),
 						"body":           template.HTML(body),
