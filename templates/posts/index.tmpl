@@ -1,0 +1,17 @@
+{{ define "posts/index.tmpl" }}
+<html>
+<head>
+<title>{{ .title }}</title>
+</head>
+<h1>
+	{{ .title }}
+</h1>
+<p>{{.description}}</p>
+<p>{{.links}}</p>
+{{ range $i, $v := .Post }}
+    <p>
+        <a href="?post_id={{ $v.Post_id }}">{{ $v.Title }}</a>
+    </p>
+    {{ end }}
+</html>
+{{ end }}

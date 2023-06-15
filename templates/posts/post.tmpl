@@ -1,0 +1,13 @@
+{{ define "posts/post.tmpl" }}
+<html>
+<head>
+<title>{{ .title }}</title>
+</head>
+<h1>
+	{{ .title }}
+</h1>
+<p>{{.date_published}}</p>
+<div>{{.body}}</div>
+
+</html>
+{{ end }}
