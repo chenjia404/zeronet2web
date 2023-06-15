@@ -1,6 +1,6 @@
 ## zeront to web
 
-输出zeronet的内容到web
+输出zeronet的内容到web，因为搜索引擎只能索引这种格式。
 
 
 ### 命令行参数

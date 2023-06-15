@@ -1,7 +1,7 @@
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 ## zeront to web
 
-Output the content of zeronet to the web
+Output the content of zeronet to the web, because search engines can only index this format.
 
 
 ### Command Line Arguments命令行参数
