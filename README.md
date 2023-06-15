@@ -8,7 +8,8 @@ Output the content of zeronet to the web, because search engines can only index 
 | Field     | Type             | Description                                                                          |
 |-----------|-------------|------------------------------------------------------------------------|
 | dir         | string          | zeronet's data directory，For example `F:/soft/ZeroNet-win/data/` |
-| -host         | string          | will put the content inside `http://127.0.0.1:43110/` replace with this|
+| host         | string          | will put the content inside `http://127.0.0.1:43110/` replace with this|
+| port         | int          | web port|
 
 ### build
 

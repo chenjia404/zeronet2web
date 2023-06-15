@@ -172,6 +172,7 @@ func main() {
 
 	var _ZeroNetDataPath = flag.String("dir", "", "ZeroNet Data Path")
 	var _ProxyHost = flag.String("host", "http://127.0.0.1:43110/", "Proxy Host")
+	var _port = flag.String("port", "20236", "web port")
 	flag.Parse()
 	ZeroNetDataPath = *_ZeroNetDataPath
 	ProxyHost = *_ProxyHost
@@ -180,5 +181,5 @@ func main() {
 
 	r := setupRouter(db)
 	// Listen and Server in 0.0.0.0:8080
-	r.Run(":8080")
+	r.Run(":" + *_port)
 }

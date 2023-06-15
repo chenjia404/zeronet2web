@@ -7,7 +7,8 @@
 | 字段        | 类型          | 说明                                                                     |
 |-----------|-------------|------------------------------------------------------------------------|
 | dir         | string          | zeronet的data目录，例如F:/soft/ZeroNet-win/data/ |
-| -host         | string          | 会把内容里面的http://127.0.0.1:43110/ 替换成这个|
+| host         | string          | 会把内容里面的http://127.0.0.1:43110/ 替换成这个|
+| port         | int          | http web服务的端口号|
 ## 编译
 
 go build -trimpath -ldflags="-w -s" 
