@@ -8,6 +8,8 @@ import (
 	"html/template"
 	"io/ioutil"
 	"net/http"
+	"net/http/httputil"
+	"net/url"
 	"os"
 	"strconv"
 	"strings"
@@ -39,6 +41,13 @@ type UserData struct {
 	Post        []Post `json:"post"`
 }
 
+func ModifyResponse(resp *http.Response) error {
+
+	resp.Header.Set("Content-Security-Policy", "")
+
+	return nil
+}
+
 func setupRouter(db *gorm.DB) *gin.Engine {
 	// Disable Console Color
 	// gin.DisableConsoleColor()
@@ -52,6 +61,7 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 			html.WithXHTML(),
 		),
 	)
+	remote, _ := url.Parse(ProxyHost)
 
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/**/*")
@@ -62,13 +72,10 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 	})
 
 	r.GET("/", func(c *gin.Context) {
-		blogs := make([]models.Blog, 0, 20)
-		db.Limit(20).Find(&blogs)
-		for _, blog := range blogs {
-			fmt.Printf("Address:%s %s\n", blog.Address, blog.Title)
-		}
+		blogs := make([]models.Blog, 0, 100)
+		db.Limit(100).Find(&blogs)
 		c.HTML(http.StatusOK, "index/index.tmpl", gin.H{
-			"title":       "zeronet 2 web",
+			"title":       "zeronet to web",
 			"description": "显示全部zeronet博客",
 			"blogs":       blogs,
 		})
@@ -83,6 +90,21 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 		jsonFile, err := os.Open(ZeroNetDataPath + address + "/data/data.json")
 		if err != nil {
 			fmt.Println("文件不存在，请查看该文件")
+
+			c.Request.Host = remote.Host
+			fmt.Println(c.Request.Host, c.Request.URL)
+			proxy := httputil.NewSingleHostReverseProxy(remote)
+			proxy.Director = func(req *http.Request) {
+				req.Header = c.Request.Header
+				req.Host = remote.Host
+				req.URL.Scheme = remote.Scheme
+				req.URL.Host = remote.Host
+				req.URL.Path = "/raw" + c.Request.URL.Path
+				fmt.Println(req.URL.Path)
+			}
+			proxy.ModifyResponse = ModifyResponse
+			proxy.ServeHTTP(c.Writer, c.Request)
+			return
 		}
 		byteValue, _ := ioutil.ReadAll(jsonFile)
 		var result UserData
@@ -156,6 +178,21 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 		// c.String(http.StatusOK, "Hello %s %s", name, post_id)
 	})
 
+	r.NoRoute(func(c *gin.Context) {
+		c.Request.Host = remote.Host
+		fmt.Println(c.Request.Host, c.Request.URL)
+		proxy := httputil.NewSingleHostReverseProxy(remote)
+		proxy.Director = func(req *http.Request) {
+			req.Header = c.Request.Header
+			req.Host = remote.Host
+			req.URL.Scheme = remote.Scheme
+			req.URL.Host = remote.Host
+			req.URL.Path = "/raw" + c.Request.URL.Path
+			fmt.Println(req.URL.Path)
+		}
+		proxy.ModifyResponse = ModifyResponse
+		proxy.ServeHTTP(c.Writer, c.Request)
+	})
 	return r
 }
 
