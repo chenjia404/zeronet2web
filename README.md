@@ -1,5 +1,5 @@
 [English](./README.md) | [简体中文](./README.zh-CN.md)
-## zeront to web
+## zeronet to web
 
 Output the content of zeronet to the web, because search engines can only index this format.
 
