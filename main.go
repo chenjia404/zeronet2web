@@ -71,6 +71,8 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 		c.String(http.StatusOK, "pong")
 	})
 
+	r.Static("/assets", "./assets")
+
 	r.GET("/", func(c *gin.Context) {
 		blogs := make([]models.Blog, 0, 100)
 		db.Limit(100).Find(&blogs)

@@ -36,7 +36,7 @@ builds:
 
 archives:
   -
-    id: go-p2ptunnel
+    id: zeronet2web
     format: tar.gz
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     format_overrides:
@@ -56,3 +56,8 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+
+dockers:
+  image_templates:
+    - "chenjia404/{{.ProjectName}}:latest"
+    - "chenjia404/{{.ProjectName}}:{{ .Tag }}"

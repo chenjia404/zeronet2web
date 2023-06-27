@@ -2,12 +2,20 @@
 <html>
 <head>
 <title>{{ .title }}</title>
+<link rel="stylesheet" href="/assets/css/all.css?rev=4625">
 </head>
 <h1>
 	{{ .title }}
 </h1>
 <p>{{.date_published}}</p>
-<div>{{.body}}</div>
+<body class="page-post loaded">
+
+<div class="post post-full">
+<div class="body ">
+{{.body}}</div>
+</div>
+</body>
+
 
 </html>
 {{ end }}
