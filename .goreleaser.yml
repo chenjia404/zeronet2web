@@ -58,6 +58,6 @@ changelog:
       - '^test:'
 
 dockers:
-  image_templates:
+  - image_templates:
     - "chenjia404/{{.ProjectName}}:latest"
     - "chenjia404/{{.ProjectName}}:{{ .Tag }}"
