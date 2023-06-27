@@ -18,6 +18,7 @@ WORKDIR /app
 RUN apk update --no-cache && apk upgrade && apk add --no-cache ca-certificates
 
 COPY templates /app/templates
+COPY assets /app/assets
 COPY --from=builder /build/zeronet2web /app/zeronet2web
 
 
