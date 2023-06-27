@@ -11,11 +11,13 @@ import (
 	"net/http/httputil"
 	"net/url"
 	"os"
+	"runtime"
 	"strconv"
 	"strings"
 	"time"
 
 	"github.com/chenjia404/zeronet2web/models"
+	"github.com/chenjia404/zeronet2web/update"
 	"github.com/gin-gonic/gin"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
@@ -201,7 +203,18 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 var ZeroNetDataPath = ""
 var ProxyHost = ""
 
+var (
+	version   = "0.0.4"
+	gitRev    = ""
+	buildTime = ""
+)
+
 func main() {
+	fmt.Printf("zeronet2web %s-%s\n", version, gitRev)
+	fmt.Printf("buildTime %s\n", buildTime)
+	fmt.Printf("System version: %s\n", runtime.GOARCH+"/"+runtime.GOOS)
+	fmt.Printf("Golang version: %s\n", runtime.Version())
+
 	os.Mkdir("./db/", os.FileMode(0777))
 	db, _ := gorm.Open(sqlite.Open("db/zeronet.blogs.db"), &gorm.Config{
 		DisableForeignKeyConstraintWhenMigrating: true,
@@ -213,7 +226,12 @@ func main() {
 	var _ZeroNetDataPath = flag.String("dir", "", "ZeroNet Data Path")
 	var _ProxyHost = flag.String("host", "http://127.0.0.1:43110/", "Proxy Host")
 	var _port = flag.String("port", "20236", "web port")
+	var flag_update = flag.Bool("update", false, "update form github")
 	flag.Parse()
+	if *flag_update {
+		update.CheckGithubVersion(version)
+		return
+	}
 	ZeroNetDataPath = *_ZeroNetDataPath
 	ProxyHost = *_ProxyHost
 	fmt.Printf("ZeroNet Data Path:%s\n", ZeroNetDataPath)
