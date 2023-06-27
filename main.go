@@ -74,6 +74,7 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 	})
 
 	r.Static("/assets", "./assets")
+	r.StaticFile("/robots.txt", "./robots.txt")
 
 	r.GET("/", func(c *gin.Context) {
 		blogs := make([]models.Blog, 0, 100)
@@ -145,8 +146,8 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 			if err := md.Convert([]byte(result.Links), &buf); err != nil {
 				panic(err)
 			}
-			description := strings.Replace(buf.String(), "http://127.0.0.1:43110/", ProxyHost, -1)
-			links := strings.Replace(linksBuf.String(), "http://127.0.0.1:43110/", ProxyHost, -1)
+			description := strings.Replace(buf.String(), "http://127.0.0.1:43110/", "/", -1)
+			links := strings.Replace(linksBuf.String(), "http://127.0.0.1:43110/", "/", -1)
 
 			c.HTML(http.StatusOK, "posts/index.tmpl", gin.H{
 				"address":     address,
@@ -164,7 +165,7 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 						panic(err)
 					}
 
-					body := strings.Replace(buf.String(), "http://127.0.0.1:43110/", ProxyHost, -1)
+					body := strings.Replace(buf.String(), "http://127.0.0.1:43110/", "/", -1)
 					c.HTML(http.StatusOK, "posts/post.tmpl", gin.H{
 						"address":        address,
 						"proxy_host":     ProxyHost,
