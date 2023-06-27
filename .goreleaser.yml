@@ -42,8 +42,14 @@ archives:
     format_overrides:
       - goos: windows
         format: zip
+    files:
+      - templates/**/*
+      - assets/**/*
 
-
+signs:
+  - artifacts: all
+    signature: "${artifact}.asc"
+    args: ["--armor","--detach-sign", "${artifact}"]
 
 checksum:
   name_template: 'checksums.txt'
@@ -57,7 +63,3 @@ changelog:
       - '^docs:'
       - '^test:'
 
-dockers:
-  - image_templates:
-    - "chenjia404/{{.ProjectName}}:latest"
-    - "chenjia404/{{.ProjectName}}:{{ .Tag }}"
