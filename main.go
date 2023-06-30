@@ -81,7 +81,7 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 		db.Limit(100).Find(&blogs)
 		c.HTML(http.StatusOK, "index/index.tmpl", gin.H{
 			"title":       "zeronet to web",
-			"description": "显示全部zeronet博客",
+			"description": "Show all zeronet blogs",
 			"blogs":       blogs,
 		})
 	})

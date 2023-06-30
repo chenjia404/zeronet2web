@@ -4,13 +4,13 @@
 <h1>
 	{{.title}} 
 </h1>
-<p>{{.description}}(只支持blog)</p>
+<p>{{.description}}(only supports blog)</p>
 
 {{ range $i, $blog := .blogs }}
     <p>
         <a href="/{{ $blog.Address }}/">{{ $blog.Title }}</a>
     </p>
 {{ end }}
-<a href="https://github.com/chenjia404/zeronet2web">github</a>
+<a href="https://github.com/chenjia404/zeronet2web">Source code</a>
 </html>
 {{ end }}
