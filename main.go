@@ -19,11 +19,11 @@ import (
 	"github.com/chenjia404/zeronet2web/models"
 	"github.com/chenjia404/zeronet2web/update"
 	"github.com/gin-gonic/gin"
+	"github.com/glebarez/sqlite"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/renderer/html"
-	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
