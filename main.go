@@ -207,7 +207,7 @@ var ZeroNetDataPath = ""
 var ProxyHost = ""
 
 var (
-	version   = "0.0.4"
+	version   = "0.0.5"
 	gitRev    = ""
 	buildTime = ""
 )
