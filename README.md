@@ -29,3 +29,7 @@ docker run -it  -v /mnt/f/soft/zeroNet-win/data/:/zeronet-data/ -v ./db/:/app/db
 Note that please change `/mnt/f/soft/zeroNet-win/data/` to the data directory of your zeronet.
 
 ./db/ is the blog index data storage directory.
+
+### releases
+
+`goreleaser release --skip-publish --skip-validate --clean`

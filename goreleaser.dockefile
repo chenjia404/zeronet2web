@@ -1,0 +1,16 @@
+FROM alpine:3
+
+WORKDIR /
+RUN apk update --no-cache && apk upgrade && apk add --no-cache ca-certificates
+
+WORKDIR /app
+
+COPY templates /app/templates
+COPY assets /app/assets
+COPY robots.txt /app/robots.txt
+COPY zeronet2web /app/zeronet2web
+
+EXPOSE 4001/tcp
+EXPOSE 4001/udp
+EXPOSE 8080
+ENTRYPOINT   ["/zeronet2web"]

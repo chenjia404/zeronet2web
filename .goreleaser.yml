@@ -42,6 +42,7 @@ archives:
     files:
       - templates/**/*
       - assets/**/*
+      - LICENSE.txt
 
 signs:
   - artifacts: all
@@ -60,3 +61,17 @@ changelog:
       - '^docs:'
       - '^test:'
 
+
+dockers:
+  -
+    id: zeronet2web
+    goos: linux
+    goarch: amd64
+    dockerfile: "goreleaser.dockefile"
+    extra_files:
+      - templates/
+      - LICENSE.txt
+      - robots.txt
+      - assets/
+    image_templates:
+      - "chenjia404/{{.ProjectName}}:latest"

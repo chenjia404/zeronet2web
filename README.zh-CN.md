@@ -26,3 +26,7 @@ docker run -it  -v /mnt/f/soft/zeroNet-win/data/:/zeronet-data/ -v ./db/:/app/db
 注意请把`/mnt/f/soft/zeroNet-win/data/` 修改成你的zeronet的data目录。
 
 ./db/ 是博客索引数据保存目录。
+
+### releases
+
+`goreleaser release --skip-publish --skip-validate --clean`
