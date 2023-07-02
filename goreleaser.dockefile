@@ -13,4 +13,4 @@ COPY zeronet2web /app/zeronet2web
 EXPOSE 4001/tcp
 EXPOSE 4001/udp
 EXPOSE 8080
-ENTRYPOINT   ["/zeronet2web"]
+ENTRYPOINT   ["./zeronet2web"]
