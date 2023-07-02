@@ -3,8 +3,9 @@
 <head>
 <title>{{ .title }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<link rel="stylesheet" href="/assets/css/all.css?rev=4626">
+<link rel="stylesheet" href="/assets/css/all.css?rev=4627">
 </head>
+<body class="loaded">
 <h1>
 	{{ .title }}
 </h1>
@@ -20,5 +21,6 @@ This blog has not been found, or the format is not supported，or <a href="{{.pr
         <a href="?post_id={{ $v.Post_id }}">{{ $v.Title }}</a>
     </p>
     {{ end }}
+    </body>
 </html>
 {{ end }}
