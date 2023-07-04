@@ -245,7 +245,7 @@ a:hover { color: #3498db }
 .post .details .like .num { margin-left: 21px; color: #CCC; -webkit-transition: all 0.3s ; -moz-transition: all 0.3s ; -o-transition: all 0.3s ; -ms-transition: all 0.3s ; transition: all 0.3s  }
 .post .details .like:hover .num { color: #FA6C8D }
 .post .details .like.loading { pointer-events: none; -webkit-animation: bounce .3s infinite alternate ease-out; -moz-animation: bounce .3s infinite alternate ease-out; -o-animation: bounce .3s infinite alternate ease-out; -ms-animation: bounce .3s infinite alternate ease-out; animation: bounce .3s infinite alternate ease-out ; -webkit-animation-delay: 1s; -moz-animation-delay: 1s; -o-animation-delay: 1s; -ms-animation-delay: 1s; animation-delay: 1s ; }
-.post .body { font-size: 21.5px; line-height: 1.6; font-family: Tinos; margin-top: 20px }
+.post .body { font-size: 21.5px; line-height: 1.6; font-family: Tinos; margin-top: 20px;word-break: break-all;}
 
 .post .body h1 { text-align: center; margin-top: 50px }
 .post .body h1:before { content: " "; border-top: 1px solid #EEE; width: 120px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 50px; }
