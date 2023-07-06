@@ -228,7 +228,7 @@ a:hover { color: #3498db }
 .page-post.loaded .post-full { display: block; border-bottom: none }
 
 
-.post { margin-bottom: 50px; padding-bottom: 50px; border-bottom: 1px solid #eee; min-width: 500px }
+.post { margin-bottom: 50px; padding-bottom: 50px; border-bottom: 1px solid #eee }
 .post .title a { text-decoration: none; color: inherit; display: inline-block; border-bottom: none; font-weight: inherit }
 .posts .title a:visited { color: #666969 }
 .post .details { color: #BBB; margin-top: 5px; margin-bottom: 20px }
