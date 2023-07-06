@@ -7,8 +7,8 @@ require (
 	github.com/glebarez/sqlite v1.8.0
 	github.com/polydawn/refmt v0.89.0
 	github.com/yuin/goldmark v1.5.4
-	golang.org/x/crypto v0.10.0
-	gorm.io/gorm v1.25.2-0.20230530020048-26663ab9bf55
+	golang.org/x/crypto v0.11.0
+	gorm.io/gorm v1.25.2
 )
 
 require (
@@ -41,8 +41,8 @@ require (
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	golang.org/x/arch v0.3.0 // indirect
 	golang.org/x/net v0.11.0 // indirect
-	golang.org/x/sys v0.9.0 // indirect
-	golang.org/x/text v0.10.0 // indirect
+	golang.org/x/sys v0.10.0 // indirect
+	golang.org/x/text v0.11.0 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
