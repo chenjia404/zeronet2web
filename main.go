@@ -40,6 +40,7 @@ type UserData struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	Links       string `json:"links"`
+	Modified    int64  `json:"modified"`
 	Post        []Post `json:"post"`
 }
 
@@ -118,7 +119,7 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 			result := db.Where(models.Blog{Address: address}).FirstOrCreate(&models.Blog{
 				Title:       result.Title,
 				Address:     address,
-				Modified:    0,
+				Modified:    result.Modified,
 				Description: "Zeronet",
 			})
 			if result.RowsAffected >= 1 {
