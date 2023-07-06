@@ -79,7 +79,7 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 
 	r.GET("/", func(c *gin.Context) {
 		blogs := make([]models.Blog, 0, 100)
-		db.Limit(100).Find(&blogs)
+		db.Order("modified desc").Limit(100).Find(&blogs)
 		c.HTML(http.StatusOK, "index/index.tmpl", gin.H{
 			"title":       "zeronet to web",
 			"description": "Show all zeronet blogs",
