@@ -131,10 +131,14 @@ func setupRouter(db *gorm.DB) *gin.Engine {
 			fmt.Println(err)
 		}
 
+		blog := models.Blog{}
+		db.Where(models.Blog{Address: address}).First(&blog)
 		fmt.Println(result.Title)
 		fmt.Println(result.Description)
 		fmt.Printf("文章数：%d\n", len(result.Post))
 		fmt.Printf("postId:%d\n", postId)
+		blog.Modified = result.Modified
+		db.Save(blog)
 
 		if postId == 0 {
 
@@ -208,7 +212,7 @@ var ZeroNetDataPath = ""
 var ProxyHost = ""
 
 var (
-	version   = "0.0.7"
+	version   = "0.0.8"
 	gitRev    = ""
 	buildTime = ""
 )
